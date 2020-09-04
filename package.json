@@ -1,0 +1,32 @@
+{
+  "name": "dump-api",
+  "version": "1.0.0",
+  "description": "Server Http api rest",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gass-Dev/Dump_API.git"
+  },
+  "keywords": [
+    "server.http.api.rest"
+  ],
+  "author": "Gwenaelle Fouquet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gass-Dev/Dump_API/issues"
+  },
+  "homepage": "https://github.com/Gass-Dev/Dump_API#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.5",
+    "sequelize-auto": "^0.5.4"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
+  }
+}
