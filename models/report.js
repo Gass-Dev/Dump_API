@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.Report.belongsTo(models.User, {
         foreignKey: {
+          allowNull: false,
           name: 'idUser',
         },
       })
