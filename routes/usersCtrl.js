@@ -1,6 +1,6 @@
 // Imports
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const jwtUtils = require("../utils/jwt.utils");
 const models = require('../models');
 
 // Routes
@@ -12,21 +12,26 @@ module.exports = {
         const password = req.body.password;
         const firstname = req.body.firstname;
         const lastname = req.body.lastname;
-        const address = req.body.address;
-        //console.log(username, email, password, firstname, lastname, address)
+        const numberstreet = req.body.numberstreet;
+        const street = req.body.street;
+        const postalcode = req.body.postalcode;
+        const city = req.body.city;
+        //console.log(username, email, password, firstname, lastname, numberstreet, street, postalcode, city)
         if (
             username == null ||
             email == null ||
             password == null ||
             firstname == null ||
             lastname == null ||
-            address == null
+            numberstreet == null ||
+            street == null ||
+            postalcode == null ||
+            city == null
         ) {
             return res.status(400).json({
                 error: "missing parameters"
             });
         }
-
         models.User.findOne({
                 attributes: ['email'],
                 where: {
@@ -42,7 +47,10 @@ module.exports = {
                                 password: bcryptedPassword,
                                 firstName: firstname,
                                 lastName: lastname,
-                                address: address
+                                numberstreet: numberstreet,
+                                street: street,
+                                postalCode: postalcode,
+                                city: city
                             })
                             .then((newUser) => {
                                 return res.status(201).json({
@@ -56,7 +64,6 @@ module.exports = {
                                 });
                             });
                     });
-
                 } else {
                     return res.status(409).json({
                         'error': 'user already exist'
@@ -69,6 +76,37 @@ module.exports = {
                 });
             });
     },
+    login: (req, res) => {
+        // Params
+        let email    = req.body.email;
+        let password = req.body.password;
 
-    login: (req, res) => {},
+        if (email == null || password == null) {
+            return res.status(400).json({'error': 'missing parameters' });
+        }
+
+        // To do verify mail regex & password login
+        models.User.findOne({
+            where: {email: email}
+        })
+        .then((userFound) => {
+            if (userFound) {
+                bcrypt.compare(password, userFound.password, (errBycrypt, resBycrypt) => {
+                    if(resBycrypt) {
+                        return res.status(200).json({
+                            'userId': userFound.id,
+                            'token': jwtUtils.generateTokenForUser(userFound)
+                        });
+                    } else {
+                        return res.status(403).json({ "error": "invalid password" });
+                    }
+                });
+            } else {
+                return res.status(404).json({ 'error': 'user not exist un DB' });
+            }
+        })
+        .catch((err) => {
+            return res.status(500).json({ 'error': 'unable to verify user' });
+        });
+    }
 }
