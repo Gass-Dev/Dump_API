@@ -23,7 +23,6 @@ server.use('/api/', apiRouter);
 
 //Call routes
 
-
 //Listen to port
 const port = 8001;
 

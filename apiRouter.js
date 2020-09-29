@@ -8,7 +8,7 @@ exports.router = ( () => {
 
     // Users routes
     apiRouter.route('/users/register/').post(usersCtrl.register);
-    apiRouter.route('/user/login/').post(usersCtrl.login,);
+    apiRouter.route('/users/login/').post(usersCtrl.login,);
 
     return apiRouter;
 })();
