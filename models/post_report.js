@@ -3,36 +3,28 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Post_Report extends Model {
+  class Post_Reports extends Model {
     static associate(models) {
       // define association here
-      models.User.belongsTo(models.User, {
-        foreignKey: {
-          allowNull: false,
-          name: 'idUser',
-        },
+      this.belongsTo(models.Users, {
+        foreignKey: 'idUsers',
       });
 
-      models.Report.belongsTo(models.Report, {
-        foreignKey: {
-          allowNull: false,
-          name: 'idReport',
-        },
-      });
+      this.belongsTo(models.Reports, {
+        foreignKey: 'idReports',
+      })
     }
   };
-  Post_Report.init({
-    idUser:DataTypes.INTEGER,
+  Post_Reports.init({
     numberStreet: DataTypes.INTEGER,
     street: DataTypes.STRING,
     postalCode: DataTypes.INTEGER,
     city: DataTypes.STRING,
     like: DataTypes.INTEGER,
     attachement: DataTypes.STRING,
-    idReport:DataTypes.INTEGER,
   }, {
     sequelize,
-    modelName: 'Post_Report',
+    modelName: 'Post_Reports',
   });
-  return Post_Report;
+  return Post_Reports;
 };

@@ -12,9 +12,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
-          key: 'id'
-        }
+          model: "Users",
+          key: "id",
+        },
+      },
+      idReports: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Reports",
+          key: "id",
+        },
       },
       numberStreet: {
         allowNull: false,
@@ -40,14 +48,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      idReports: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Reports',
-          key: 'id'
-        }
-      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
