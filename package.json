@@ -4,7 +4,9 @@
   "description": "Server Http api rest",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "client": "cd dump && npm start"
   },
   "repository": {
     "type": "git",
@@ -20,13 +22,16 @@
   },
   "homepage": "https://github.com/Gass-Dev/Dump_API#readme",
   "dependencies": {
+    "async": "^3.2.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "jose": "^1.28.0",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
+    "react-waterfall": "^4.0.4",
     "sequelize": "^6.3.5",
     "sequelize-auto": "^0.5.4"
   },
