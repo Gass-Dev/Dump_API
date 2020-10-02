@@ -32,16 +32,18 @@ module.exports = {
                 error: "missing parameters"
             });
         }
-        models.Users.findOne({
+
+        models.User.findOne({
             attributes: ['email'],
             where: {
                 email: email
+
             },
         })
             .then((userFound) => {
                 if (!userFound) {
                     bcrypt.hash(password, 5, (err, bcryptedPassword) => {
-                        let newUser = models.Users.create({
+                        let newUser = models.User.create({
                             email: email,
                             userName: username,
                             password: bcryptedPassword,
@@ -92,7 +94,7 @@ module.exports = {
         }
 
         // To do verify mail regex & password login
-        models.Users.findOne({
+        models.User.findOne({
             where: {
                 email: email
             },
