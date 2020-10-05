@@ -13,9 +13,7 @@ exports.router = (() => {
     apiRouter.post('/users/register', usersCtrl.register);
 
     // Posts routes
-    apiRouter.post('/postreports/post', authenticate_handler,  (req, res)=>{
-        postsReportCtrl.createPostReport(req.body)
-    });
+    apiRouter.post('/postreports/post', authenticate_handler, postsReportCtrl.createPostReport);
 
     return apiRouter;
 })();

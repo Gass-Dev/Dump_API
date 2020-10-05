@@ -81,7 +81,7 @@ module.exports = {
     login: (req, res) => {
         // Params
         let email = req.body.email;
-        console.log("email",email);
+        // console.log("email",email);
         let password = req.body.password;
 
         if (
@@ -102,7 +102,7 @@ module.exports = {
             .then((userFound) => {
                 if (userFound) {
                     const json = JSON.parse(JSON.stringify(userFound))
-                    console.log("json",json)
+                    // console.log("json",json)
                     
                     bcrypt.compare(password, json.password, (errBycrypt, resBycrypt) => {
                         if (resBycrypt) {
