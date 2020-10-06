@@ -7,13 +7,15 @@ const authenticate_handler = require("./middleware/authentif_handler");
 
 // Router
 exports.router = (() => {
-
     // Users routes
     apiRouter.post('/users/login', usersCtrl.login);
     apiRouter.post('/users/register', usersCtrl.register);
 
     // Posts routes
     apiRouter.post('/postreports/post', authenticate_handler, postsReportCtrl.createPostReport);
+
+    // Gets routes
+    apiRouter.get('/postreports', postsReportCtrl.getAllPostReport);
 
     return apiRouter;
 })();

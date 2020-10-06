@@ -7,16 +7,16 @@ const models = require('../models');
 module.exports = {
     register: (req, res) => {
         // Params
-        let username = req.body.username;
+        let username = req.body.userName;
         let email = req.body.email;
         let password = req.body.password;
-        let firstname = req.body.firstname;
-        let lastname = req.body.lastname;
-        let numberstreet = req.body.numberstreet;
+        let firstname = req.body.firstName;
+        let lastname = req.body.lastName;
+        let numberstreet = req.body.numberStreet;
         let street = req.body.street;
-        let postalcode = req.body.postalcode;
+        let postalcode = req.body.postalCode;
         let city = req.body.city;
-        // console.log(username, email, password, firstname, lastname, numberstreet, street, postalcode, city)
+
         if (
             username == null ||
             email == null ||
@@ -35,10 +35,7 @@ module.exports = {
 
         models.User.findOne({
             attributes: ['email'],
-            where: {
-                email: email
-
-            },
+            where: { email: email },
         })
             .then((userFound) => {
                 if (!userFound) {
@@ -60,7 +57,6 @@ module.exports = {
                                 })
                             })
                             .catch((err) => {
-                                // console.log(err)
                                 return res.status(500).json({
                                     'error': 'cannot add user'
                                 });
@@ -78,10 +74,10 @@ module.exports = {
                 });
             });
     },
+
     login: (req, res) => {
         // Params
         let email = req.body.email;
-        // console.log("email",email);
         let password = req.body.password;
 
         if (
@@ -95,15 +91,12 @@ module.exports = {
 
         // To do verify mail regex & password login
         models.User.findOne({
-            where: {
-                email: email
-            },
+            where: { email: email },
         })
             .then((userFound) => {
                 if (userFound) {
                     const json = JSON.parse(JSON.stringify(userFound))
-                    // console.log("json",json)
-                    
+
                     bcrypt.compare(password, json.password, (errBycrypt, resBycrypt) => {
                         if (resBycrypt) {
                             return res.status(200).json({

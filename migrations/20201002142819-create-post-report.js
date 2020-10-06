@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      report: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       numberStreet: {
         allowNull: false,
         defaultValue : 0,
@@ -22,10 +26,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       city: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      report: {
         allowNull: false,
         type: Sequelize.STRING
       },
