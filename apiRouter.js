@@ -4,6 +4,7 @@ const usersCtrl = require('./controllers/usersCtrl');
 const postsReportCtrl = require('./controllers/postsReportCtrl');
 const apiRouter = express.Router();
 const authenticate_handler = require("./middleware/authentif_handler");
+const jwtUtils = require('./utils/jwt.utils');
 
 // Router
 exports.router = (() => {
