@@ -12,9 +12,9 @@ const models = require('./models');
 // Router
 exports.router = (() => {
 
-    apiRouter.get("/user/me", authenticate_handler, async (request, response) => {
-        const user = await models.User.findByPk(request.user.userId);
-        response.status(200).json(user);
+    apiRouter.get("/user/me", authenticate_handler, async (req, res) => {
+        const user = await models.User.findByPk(req.user.userId);
+        res.status(200).json(user);
     });
 
     // Users routes
@@ -22,22 +22,22 @@ exports.router = (() => {
     apiRouter.post('/users/register', usersCtrl.register);
 
     // Posts routes
-    apiRouter.post('/postreports/post', authenticate_handler, postsReportCtrl.createPostReport);
+    apiRouter.post('/post_reports/post', postsReportCtrl.createPostReport);
 
     // Gets routes
-    apiRouter.get('/postreports', authenticate_handler, postsReportCtrl.getAllPostReport);
-    // apiRouter.get('register', authenticate_handler, usersCtrl.getAllUser);
-    // apiRouter.get('register/:id', authenticate_handler, usersCtrl.getOneUser);
-    // apiRouter.get("/posts", authenticate_handler, postsReportCtrl.getAllPost);
-    // apiRouter.get("/posts/:id", authenticate_handler, postsReportCtrl.getOnePost);
+    apiRouter.get('/post_reports', postsReportCtrl.getAllPostReport);
+    // apiRouter.get('register', usersCtrl.getAllUser);
+    // apiRouter.get('register/:id', usersCtrl.getOneUser);
+    // apiRouter.get("/posts", postsReportCtrl.getAllPost);
+    // apiRouter.get("/posts/:id", postsReportCtrl.getOnePost);
 
     // Patch routes
-    // apiRouter.patch("register/:id", authenticate_handler, usersCtrl.editUser);
-    // apiRouter.patch("postreports/:id", authenticate_handler, postsReportCtrl.editPost);
+    // apiRouter.patch("register/:id", usersCtrl.editUser);
+    // apiRouter.patch("postreports/:id", postsReportCtrl.editPost);
 
     // Delete routes
-    // apiRouter.delete("/users/register/:id", authenticate_handler, usersCtrl.deleteUser);
-    // apiRouter.delete("/users/postreports/:id", authenticate_handler, postsReportCtrl.deletePost);
+    // apiRouter.delete("/users/register/:id", usersCtrl.deleteUser);
+    // apiRouter.delete("/users/postreports/:id", postsReportCtrl.deletePost);
 
     return apiRouter;
 })();

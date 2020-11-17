@@ -54,8 +54,10 @@ module.exports = {
             .catch((err) => {
                 return res.status(500).json({
                     error: "cannot add post",
+                    
                 });
             });
+            
     },
 
     getAllPostReport: (req, res) => {
