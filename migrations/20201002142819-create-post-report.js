@@ -14,7 +14,7 @@ module.exports = {
       },
       numberStreet: {
         allowNull: false,
-        defaultValue : 0,
+        defaultValue: 0,
         type: Sequelize.INTEGER
       },
       street: {

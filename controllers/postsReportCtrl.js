@@ -7,16 +7,15 @@ module.exports = {
     createPostReport: (req, res) => {
         // Getting auth header
         const headerAuth = req.headers["authorization"];
-        const userId = jwtUtils.getUserId(headerAuth);
+        // const userId = jwtUtils.getUserId(headerAuth);
 
         // Params
-        let numberstreet = req.body.numberStreet;
-        let street = req.body.street;
-        let postalcode = req.body.postalCode;
-        let city = req.body.city;
-        let report = req.body.report;
-        console.log(req.body);
-        console.log(userId);
+        const userId = req.body.userId;
+        const numberstreet = req.body.numberStreet;
+        const street = req.body.street;
+        const postalcode = req.body.postalCode;
+        const city = req.body.city;
+        const report = req.body.report;
 
         if (
             numberstreet == null ||
@@ -39,12 +38,12 @@ module.exports = {
         }
 
         let newPost = models.PostReport.create({
-            numberStreet: numberstreet,
             idUser: userId,
+            report: report,
+            numberStreet: numberstreet,
             street: street,
             postalCode: postalcode,
             city: city,
-            report: report,
         })
             .then((newPost) => {
                 return res.status(201).json({
@@ -54,10 +53,8 @@ module.exports = {
             .catch((err) => {
                 return res.status(500).json({
                     error: "cannot add post",
-                    
                 });
             });
-            
     },
 
     getAllPostReport: (req, res) => {

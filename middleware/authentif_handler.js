@@ -8,7 +8,6 @@ module.exports = (req, res, next) => {
             'error': 'please authenticate to access'
         });
     };
-    console.log("on passe par le authentif_handler", userId);
     req.userId = userId;
     req.body.userId = userId;
     next();
