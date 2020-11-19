@@ -13,11 +13,11 @@ const models = require('./models');
 exports.router = (() => {
 
     apiRouter.get("/user/me", authenticate_handler, async (req, res) => {
-        const user = await models.User.findByPk(req.user.userId);
+        const user = await models.User.findByPk(req.userId);
         res.status(200).json(user);
     });
 
-    // Users routes
+    // Users routes posts
     apiRouter.post('/users/login', usersCtrl.login);
     apiRouter.post('/users/register', usersCtrl.register);
 
@@ -25,7 +25,7 @@ exports.router = (() => {
     apiRouter.post('/post_reports/post', postsReportCtrl.createPostReport);
 
     // Gets routes
-    apiRouter.get('/post_reports', postsReportCtrl.getAllPostReport);
+    // apiRouter.get('/post_reports/', authenticate_handler, postsReportCtrl.getAllPostReport);
     // apiRouter.get('register', usersCtrl.getAllUser);
     // apiRouter.get('register/:id', usersCtrl.getOneUser);
     // apiRouter.get("/posts", postsReportCtrl.getAllPost);
