@@ -25,9 +25,8 @@ exports.router = (() => {
     apiRouter.post('/post_reports/post', postsReportCtrl.createPostReport);
 
     // Gets routes
-    // apiRouter.get('/post_reports/', authenticate_handler, postsReportCtrl.getAllPostReport);
-    // apiRouter.get('register', usersCtrl.getAllUser);
-    // apiRouter.get('register/:id', usersCtrl.getOneUser);
+    apiRouter.get('/post_reports/post', postsReportCtrl.getAllPostReport);
+
     // apiRouter.get("/posts", postsReportCtrl.getAllPost);
     // apiRouter.get("/posts/:id", postsReportCtrl.getOnePost);
 
@@ -36,7 +35,6 @@ exports.router = (() => {
     // apiRouter.patch("postreports/:id", postsReportCtrl.editPost);
 
     // Delete routes
-    // apiRouter.delete("/users/register/:id", usersCtrl.deleteUser);
     // apiRouter.delete("/users/postreports/:id", postsReportCtrl.deletePost);
 
     return apiRouter;

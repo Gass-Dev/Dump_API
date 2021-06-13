@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const apiRouter = require('./apiRouter').router;
-const cors = require('cors')
+const cors = require('cors');
 
 //Instantiate server
 const server = express();
